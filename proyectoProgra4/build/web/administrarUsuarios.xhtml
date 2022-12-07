@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <title>Mantenimiento de Usuarios</title>
+    <link rel="icon" href="resources/images/assets/icon.png"></link>
+    <style type="text/css">
+        body {
+            background-color: #f6f6f6;
+        }
+    </style>
+</h:head>
+<h:body>
+    <h:form id="form">
+
+        <p:tabMenu activeIndex="#{param.i}">
+            <p:menuitem value="Recetas" outcome="bienvenido" icon="pi pi-th-large">
+                <f:param name="i" value="0"/>
+            </p:menuitem>
+            <p:menuitem value="Administrar Recetas" outcome="administrarRecetas" icon="pi pi-fw pi-pencil">
+                <f:param name="i" value="1"/>
+            </p:menuitem>
+            <c:if test="#{loginController.usuarioTO.tipo == 1}">
+                <p:menuitem value="Mantenimiento de Usuarios" outcome="administrarUsuarios" icon="pi pi-fw pi-user-edit">
+                    <f:param name="i" value="2"/>
+                </p:menuitem>
+                <p:menuitem value="Administrar Recetas Globales" outcome="administrarRecetasAdmin" icon="pi pi-fw pi-book">
+                    <f:param name="i" value="3"/>
+                </p:menuitem>
+            </c:if>
+            <p:menuitem value="Salir" actionListener="#{loginController.index}" icon="pi pi-fw pi-sign-out">
+                <f:param name="i" value="2"/>
+            </p:menuitem>
+        </p:tabMenu>
+
+        <p:growl id="messages" showDetail="true" />
+
+
+
+        <!--  new user-->
+        <p:toolbar rendered="false">
+            <p:toolbarGroup>
+                <p:commandButton value="New" icon="pi pi-plus" actionListener="#{crudView.openNew}"
+                                 update=":dialogs:manage-product-content" oncomplete="PF('manageUserDialog').show()"
+                                 styleClass="ui-button-success" style="margin-right: .5rem">
+                    <p:resetInput target=":dialogs:manage-product-content" />
+                </p:commandButton>
+
+            </p:toolbarGroup>
+        </p:toolbar> <!--NO BORRAR, POR ALGUN MOTIVO ESTE CODIGO ES SUPER IMPORTANTE 😂  -->
+
+
+
+        <p:dataTable id="dt-usuarios" value="#{loginController.listaUsuarios}" var="myVariable"
+                     rows="5"
+                     paginator="true" paginatorPosition="bottom"
+                     paginatorTemplate="{currentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                     rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+
+            <f:facet name="Header">
+                Lista de usuarios
+            </f:facet>
+
+            <p:column headerText="Id">
+                <h:outputText value="#{myVariable.idusuario}" />
+            </p:column>
+
+            <p:column headerText="Nombre">
+                <h:outputText value="#{myVariable.nombre}" />
+            </p:column>
+
+            <p:column headerText="Apellido">
+                <h:outputText value="#{myVariable.apellido}" />
+            </p:column>
+
+            <p:column headerText="Edad">
+                <h:outputText value="#{myVariable.edad}" />
+            </p:column>
+
+            <p:column headerText="Correo" >
+                <h:outputText value="#{myVariable.correo}" />
+            </p:column>
+
+            <p:column headerText="Contrasena">
+                <h:outputText value="#{myVariable.contrasena}" />
+            </p:column>
+
+            <p:column headerText="Tipo">
+                <h:outputText value="#{myVariable.tipo}" />
+            </p:column>
+
+            <p:column>
+                <p:commandButton icon="pi pi-pencil" update=":dialogs:manage-product-content"
+                                 oncomplete="PF('manageUserDialog').show()"
+                                 styleClass="edit-button rounded-button ui-button-success" process="@this">
+                    <f:setPropertyActionListener value="#{myVariable}" target="#{crudView.usuarioSeleccionado}" />
+                    <p:resetInput target=":dialogs:manage-product-content" />
+                </p:commandButton>
+
+                <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash"
+                                 process="@this"
+                                 oncomplete="PF('deleteUserDialog').show()">
+                    <f:setPropertyActionListener value="#{myVariable}" target="#{crudView.usuarioSeleccionado}" />
+                </p:commandButton>
+            </p:column>
+
+        </p:dataTable>
+    </h:form>
+
+
+    <!--  Agregar Usuario  -->
+    <h:form id="dialogs">
+        <p:growl id="messagesModal" showDetail="true" />
+        <p:dialog header="Detalle del usuario" showEffect="fade" modal="true" widgetVar="manageUserDialog"
+                  responsive="true" width="415px" height="430px">
+            <p:outputPanel id="manage-product-content" class="ui-fluid">
+
+                <div class="idUsuario">
+                    <p:outputLabel for="idUsuario">Identificador</p:outputLabel>
+                    <p:inputText id="idUsuario" value="#{crudView.usuarioSeleccionado.idusuario}" required="true" requiredMessage="Identificador Requerido"/>
+                </div>
+                <div class="field">
+                    <p:outputLabel for="name">Nombre</p:outputLabel>
+                    <p:inputText id="name" value="#{crudView.usuarioSeleccionado.nombre}" required="true" requiredMessage="Nombre Requerido" />
+                </div>
+                <div class="field">
+                    <p:outputLabel for="last">Apellido</p:outputLabel>
+                    <p:inputText id="last" value="#{crudView.usuarioSeleccionado.apellido}" required="true" requiredMessage="Apellido Requerido" />
+                </div>
+                <div class="field">
+                    <p:outputLabel for="edad">Edad</p:outputLabel>
+                    <p:inputText id="edad" value="#{crudView.usuarioSeleccionado.edad}" required="true" requiredMessage="Edad Requerida" />
+                </div>
+                <div class="field">
+                    <p:outputLabel for="correo">Correo</p:outputLabel>
+                    <p:inputText id="correo" value="#{crudView.usuarioSeleccionado.correo}" required="true" requiredMessage="Correo Requerido" />
+                </div>
+                <div class="field">
+                    <p:outputLabel for="contrasena">Contrasena</p:outputLabel>
+                    <p:inputText id="contrasena" value="#{crudView.usuarioSeleccionado.contrasena}" required="true" requiredMessage="Contrasena Requerida" />
+                </div>
+                <div class="field">
+                    <p:outputLabel for="tipo">Tipo</p:outputLabel>
+                    <p:inputText id="tipo" value="#{crudView.usuarioSeleccionado.tipo}" required="true" requiredMessage="Tipo Requerido" />
+                </div>
+
+            </p:outputPanel>
+
+            <f:facet name="footer">
+                <p:commandButton value="Guardar" icon="pi pi-check" actionListener="#{crudView.save}"
+                                 update="manage-product-content messagesModal " process="manage-product-content @this" />
+                <p:commandButton value="Cancelar" icon="pi pi-times" onclick="PF('manageUserDialog').hide()"
+                                 class="ui-button-secondary" type="button" />
+            </f:facet>
+
+        </p:dialog>
+
+
+        <p:confirmDialog widgetVar="deleteUserDialog" showEffect="fade" width="300"
+                         message="Desea eliminar al usuario?" header="Confirm" severity="warn">
+            <p:commandButton value="Si" icon="pi pi-check" actionListener="#{crudView.delete}"
+                             process="@this"
+                             oncomplete="PF('deleteUserDialog').hide()" />
+            <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
+                             onclick="PF('deleteUserDialog').hide()" />
+        </p:confirmDialog>
+
+    </h:form>
+
+
+
+
+</h:body>
+</html>
+

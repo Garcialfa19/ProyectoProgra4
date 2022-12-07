@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <title>Cooking Bytes</title>
+    <link rel="icon" href="resources/images/assets/icon.png"></link>
+    <style type="text/css">
+        body {
+            background-color: #f6f6f6;
+        }
+    </style>
+</h:head>
+<h:body>
+    <h1>Bienvenido #{loginController.usuarioTO.nombre} #{loginController.usuarioTO.apellido}</h1>
+
+    <h:form id="form">
+        <p:tabMenu activeIndex="#{param.i}">
+            <p:menuitem value="Recetas" outcome="bienvenido" icon="pi pi-th-large">
+                <f:param name="i" value="0"/>
+            </p:menuitem>
+            <p:menuitem value="Administrar Recetas" outcome="administrarRecetas" icon="pi pi-fw pi-pencil">
+                <f:param name="i" value="1"/>
+            </p:menuitem>
+            <c:if test="#{loginController.usuarioTO.tipo == 1}">
+                <p:menuitem value="Mantenimiento de Usuarios" outcome="administrarUsuarios" icon="pi pi-fw pi-user-edit">
+                    <f:param name="i" value="2"/>
+                </p:menuitem>
+                <p:menuitem value="Administrar Recetas Globales" outcome="administrarRecetasAdmin" icon="pi pi-fw pi-book">
+                    <f:param name="i" value="3"/>
+                </p:menuitem>
+            </c:if>
+            <p:menuitem value="Salir" actionListener="#{loginController.index}" icon="pi pi-fw pi-sign-out">
+                <f:param name="i" value="2"/>
+            </p:menuitem>
+        </p:tabMenu>
+
+
+        <div id="recetas" style="flex-wrap: wrap; display: flex; margin-top: -7px">
+            <p:repeat var="receta" value="#{servicioReceta.listaRecetasTodos()}">
+                <p:card id="recetaCard" style="margin-right: 4px; margin-top: 10px; height: 390px; width: 347px">
+
+                    <!--top of card-->
+                    <div class="product-grid-item-top" style="margin-top: -15px">
+                        <div style="border-bottom: gray; border-bottom-style-style: solid; ">
+                            <div style="float: left; margin-right: 10px">
+                                <i class="pi pi-tag product-category-icon"/>
+
+                                <!--categoria-->
+                                <span class="product-category">#{receta.categoria}</span>
+
+                                <!--dificultad-->
+                            </div>
+                            <p:tag style="float: right; background-color: #a1a1a1" styleClass="mr-2"
+                                   value="#{receta.dificultad}"></p:tag>
+                        </div>
+                    </div>
+
+                    <!--card content-->
+                    <div class="product-grid-item-content">
+                        <!--238,180-->
+                        <p:graphicImage style="border-radius: 5px; height: 210px;
+                                                width: 315px;align-content: center;
+                                                margin-top: 10px;margin-bottom: 50px; object-fit: cover;"
+                                        library="images" name="recetas/#{receta.imagen}"/>
+                        <div class="product-name"
+                             style="text-align: center; font-weight: bold; margin-bottom: 15px; margin-top: -44px; font-size: 30px">
+                            #{receta.nombre}
+                        </div>
+
+                        <div class="product-grid-item-bottom">
+                            <p:commandButton value="Ver receta" actionListener="#{crudView.openNewReceta()}"
+                                             update=":dialogs:manage-product-content"
+                                             oncomplete="PF('manageUserDialog').show()"
+                                             icon="pi pi-search"
+                                             style="background-color: #497885; border-color: #497885; margin-left: 97px; margin-top: 0px"/>
+
+                        </div>
+
+                    </div>
+                </p:card>
+            </p:repeat>
+        </div>
+    </h:form>
+
+
+    <h:form id="dialogs">
+
+        <!-- pop-up -->
+        <p:growl id="messagesModal" showDetail="true"/>
+        <p:dialog header="Detalle de la receta" showEffect="fade" modal="true" widgetVar="manageUserDialog"
+                  responsive="true" width="415px" height="500px">
+            <p:outputPanel id="manage-product-content" class="ui-fluid">
+
+                <div style="text-align: center; margin-bottom: 5px">
+                    <strong>#{receta.nombre}</strong>
+                </div>
+
+                <div style="display: flex; justify-content: center; align-items: center">
+                    <p:graphicImage
+                            style="border-radius: 5px; height: 210px; width: 315px; object-fit: cover; margin-bottom: 5px "
+                            library="images" name="recetas/#{receta.imagen}"/>
+                </div>
+
+                <div style="width: 300px; text-align: center; margin: auto;  ">
+                    <div class="product-name" style="text-align: center; margin-bottom: 5px">
+                        <strong>Descripción:</strong>
+                        <br>#{receta.descripcion}</br>
+                    </div>
+
+                    <p:accordionPanel widgetVar="basic" style="; top: 10px; margin-bottom: 5px  ">
+                        <p:tab title="Ingredientes">
+                            <p class="m-0" style="font-size: 14px">
+                                <p:repeat var="ingrediente" value="#{servicioING.listaIngredientes(receta.id)}">
+                                    <ul>
+                                        <li>#{ingrediente.nombre}</li>
+                                    </ul>
+                                </p:repeat>
+                            </p>
+                        </p:tab>
+
+
+                        <p:tab title="Pasos">
+                            <p class="m-0" style="font-size: 14px">
+                                <p:repeat var="pasos" value="#{servicioPasos.listaPasos(receta.id)}">
+                                    <ul>
+                                        <li> #{pasos.paso}</li>
+                                    </ul>
+                                </p:repeat>
+                            </p>
+                        </p:tab>
+
+                    </p:accordionPanel>
+
+
+                    <strong>Puntuación:</strong>
+                    <p:rating style="margin-top: 5px" value="#{receta.puntuacion}" readonly="true"/>
+
+                </div>
+
+            </p:outputPanel>
+
+
+        </p:dialog>
+
+    </h:form>
+</h:body>
+</html>
