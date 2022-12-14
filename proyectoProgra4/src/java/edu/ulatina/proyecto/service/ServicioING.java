@@ -39,11 +39,11 @@ public class ServicioING extends Servicio implements Serializable {
 
         try {
             conectar();
-            String sql = "INSERT INTO proyectopro4.ingredientes (idING, nombreING, cantidadING) VALUES (?, ?, ?);";
+            String sql = "INSERT INTO proyectopro4.ingredientes ( nombreING, cantidadING) VALUES ( ?, ?);";
             ps = conexion.prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.setString(2, nombre);
-            ps.setString(3,cantidad);
+            //ps.setInt(1, id);
+            ps.setString(1, nombre);
+            ps.setString(2,cantidad);
 
             ps.executeUpdate();
             ingTO = new IngreTO(id, nombre, cantidad);

@@ -26,20 +26,20 @@ public class ServicioPasos extends Servicio implements Serializable {
 
     }
 
-    public PasosTO agregarPaso(String paso, int idPA) {
+    public PasosTO agregarPaso(int idPA,String paso) {
         PasosTO pasosTO = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
 
         try {
             conectar();
-            String sql = "INSERT INTO proyectopro4.pasos (pasos, idPA) VALUES (?, ?)";
+            String sql = "INSERT INTO proyectopro4.pasos (pasos) VALUES (?)";
             ps = conexion.prepareStatement(sql);
             ps.setString(1, paso);
-            ps.setInt(2, idPA);
+            //ps.setInt(, idPA);
 
             ps.executeUpdate();
-            pasosTO = new PasosTO(paso, idPA);
+            pasosTO = new PasosTO(idPA,paso);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,7 +70,7 @@ public class ServicioPasos extends Servicio implements Serializable {
                 String paso = rs.getString("pasos");
                 int idPA = rs.getInt("idPA");
                 System.out.println(paso);
-                PasosTO pasosTO = new PasosTO(paso, idPA);
+                PasosTO pasosTO = new PasosTO(idPA,paso);
                 listaRetorno.add(pasosTO);
             }
         } catch (Exception e) {

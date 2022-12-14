@@ -51,6 +51,8 @@ public class IngreController implements Serializable{
         this.ingreTO = servicioING.agregarIngre(this.id, this.nombre,this.cantidad);
         sr.ingresarIngreALista(this.id);
         FacesContext.getCurrentInstance().addMessage("sticky-key", new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingrediente agregado", "El ingrediente fue agregado correctamente"));
+        this.nombre="";
+        this.cantidad="";
     }
 
 
@@ -62,6 +64,14 @@ public class IngreController implements Serializable{
             FacesContext.getCurrentInstance().getExternalContext().redirect(request.getContextPath() + ruta);
         } catch (Exception e) {
         }
+    }
+
+    public ServicioReceta getSr() {
+        return sr;
+    }
+
+    public void setSr(ServicioReceta sr) {
+        this.sr = sr;
     }
 
 

@@ -84,7 +84,8 @@
                 <p:column>
                     <p:commandButton icon="pi pi-pencil" update=":editar:manage-User-Content"
                                      oncomplete="PF('editarReceta').show()"
-                                     styleClass="edit-button rounded-button ui-button-success" process="@this">
+                                     styleClass="edit-button rounded-button ui-button-success" process="@this"
+                                     style="background-color: #cc7b73;border-color: #cc7b73">
                         <f:setPropertyActionListener value="#{receta}" target="#{recetaController.recetaSeleccionada}"/>
                         <p:resetInput target=":editar:manage-User-Content"/>
                     </p:commandButton>
@@ -169,7 +170,7 @@
                 <p:commandButton value="Agregar ingredientes" icon="pi pi-plus"
                                  actionListener="#{crudView.openNewIngre}"
                                  update=":ingre:manejarIngre" oncomplete="PF('manage').show()"
-                                 style="width: fit-content; background-color: #689F38; border-color: #689F38; margin-left: 1px; margin-top: -4px; border-radius: 4px">
+                                 style="width: fit-content; background-color: #cc7b73;border-color: #cc7b73; margin-left: 1px; margin-top: -4px; border-radius: 4px">
                     <p:resetInput target=":ingre:manejarIngre manage"/>
                 </p:commandButton>
             </f:facet>
@@ -227,25 +228,28 @@
                                  requiredMessage="Puntuacion Requerida"/>
                 </div>
                 <div class="field">
+                    <p:commandButton value="Ingredientes" icon="pi pi-plus" actionListener="#{crudView.openNew}"
+                                     update=":dialogs:manage-product-content"
+                                     oncomplete="PF('manageRecepieDialog').show()"
+                                     styleClass="ui-button-success" 
+                                     style="width: fit-content; background-color: #cc7b73;border-color: #cc7b73">
+                        <p:resetInput target=":dialogs:manage-product-content"/>
+                    </p:commandButton>
+                </div>
+                <div class="field">
                     <p:outputLabel for="imagen">Nombre de la Imagen</p:outputLabel>
                     <p:inputText id="imagen" value="#{recetaController.recetaSeleccionada.imagen}" required="true"
                                  autocomplete="off"
                                  requiredMessage="Imagen Requerida"/>
                 </div>
 
-                <div class="field">
-                    <p:commandButton value="Ingredientes" icon="pi pi-plus" actionListener="#{crudView.openNew}"
-                                     update=":dialogs:manage-product-content"
-                                     oncomplete="PF('manageRecepieDialog').show()"
-                                     styleClass="ui-button-success" style="margin-right: .5rem">
-                        <p:resetInput target=":dialogs:manage-product-content"/>
-                    </p:commandButton>
-                </div>
+                
                 <div class="field">
                     <p:commandButton value="Pasos" icon="pi pi-plus" actionListener="#{crudView.openNew}"
                                      update=":dialogs:manage-product-content"
                                      oncomplete="PF('manageRecepieDialog').show()"
-                                     styleClass="ui-button-success" style="margin-right: .5rem">
+                                     styleClass="ui-button-success" 
+                                     style="width: fit-content; background-color: #cc7b73;border-color: #cc7b73">
                         <p:resetInput target=":dialogs:manage-product-content"/>
                     </p:commandButton>
                 </div>
@@ -260,7 +264,7 @@
                                  update=":form:dt-recetas manage-User-Content messagesModal"
                                  process="manage-User-Content @this"
                                  oncomplete="PF('editarReceta').hide()"
-                                 style="background-color: #497885; border-color: #497885">
+                                 style="background-color: #cc7b73;border-color: #cc7b73">
                     <p:resetInput target="manage-User-Content"/>
                 </p:commandButton>
                 <!-- botón Cancelar-->

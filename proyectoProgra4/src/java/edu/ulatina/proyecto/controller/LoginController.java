@@ -66,17 +66,9 @@ public class LoginController implements Serializable {
 
 
     public void agregarUsuarioTO() {
-        System.out.println("Identificador: " + this.idusuario);
-        System.out.println("Nombre: " + this.nombre);
-        System.out.println("Correo: " + this.correo);
-        System.out.println("Edad: " + this.edad);
-        System.out.println("Apellido: " + this.apellido);
-        System.out.println("Tipo: " + this.tipo);
-        System.out.println("Contrasena: " + this.contrasena);
         ServicioUsuario servicioUsuario = new ServicioUsuario();
-        this.usuarioTO = servicioUsuario.agregarUsuario(this.idusuario, this.nombre, this.correo, this.contrasena, this.edad, this.apellido, this.tipo);
+        this.usuarioTO = servicioUsuario.agregarUsuario( this.idusuario,this.nombre, this.correo, this.contrasena, this.edad, this.apellido, this.tipo);
         FacesContext.getCurrentInstance().addMessage("sticky-key", new FacesMessage(FacesMessage.SEVERITY_INFO, "UsuarioAgregado", "El usuario fue agregado correctamente"));
-        this.idusuario=0;
         this.nombre="";
         this.correo="";
         this.contrasena="";

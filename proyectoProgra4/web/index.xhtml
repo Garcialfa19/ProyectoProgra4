@@ -46,11 +46,11 @@
 
                     <p:commandButton value="Ingresar al sistema" actionListener="#{loginController.ingresar()}"
                                      update="mensaje"
-                                     style="width: 100%; background-color: #cccbcb; border-color: #cccbcb; margin-top: -4px; border-radius: 6px"/>
+                                     style="width: 100%; background-color: #cc7b73; border-color: #cc7b73; margin-top: -4px; border-radius: 6px"/>
 
                     <p:commandButton value="Registrar Usuario" actionListener="#{crudView.openNew}"
                                      update=":dialogs:manage-User-Content" oncomplete="PF('manageUserDialog').show()"
-                                     style="width: 90%; background-color: #cc7b73; border-color: #d27f77; margin-left: 10px; margin-top: -4px; border-radius: 6px">
+                                     style="width: 92%; background-color: #ecb0b0; border-color: #ecb0b0; margin-left: 10px; margin-top: -4px; border-radius: 6px">
                         <p:resetInput target=":dialogs:manage-User-Content manageUserDialog"/>
                     </p:commandButton>
 
@@ -70,11 +70,7 @@
             <p:outputPanel id="manage-User-Content" class="ui-fluid">
 
                 <!-- formulario -->
-                <div class="idUsuario">
-                    <p:outputLabel for="idUsuario">Identificador</p:outputLabel> 
-                    <p:inputText id="idUsuario" value="#{loginController.idusuario}" required="true" autocomplete="off"
-                                 requiredMessage="Identificador Requerido"/>
-                </div>
+                
                 <div class="field">
                     <p:outputLabel for="name">Nombre</p:outputLabel>
                     <p:inputText id="name" value="#{loginController.nombre}" required="true" autocomplete="off"

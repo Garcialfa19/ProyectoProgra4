@@ -103,23 +103,23 @@ public class ServicioUsuario extends Servicio {
         return usuarioTO;
     }
 
-    public UsuarioTO agregarUsuario(int idusuario, String nombre, String correo, String contrasena, int edad, String apellido, int tipo) {
+    public UsuarioTO agregarUsuario( int id,String nombre, String correo, String contrasena, int edad, String apellido, int tipo) {
         UsuarioTO usuarioTO = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
 
         try {
             conectar();
-            String sql = "INSERT INTO proyectopro4.usuarios (idUS, nombreUS, correoUS, contrasenaUS, edadUS, apellidoUS, tipo) VALUES (?, ?, ?, ?, ?, ?, ?);";
+            String sql = "INSERT INTO proyectopro4.usuarios ( nombreUS, correoUS, contrasenaUS, edadUS, apellidoUS, tipo) VALUES (?, ?, ?, ?, ?, ?);";
 
             ps = conexion.prepareStatement(sql);
-            ps.setInt(1, idusuario);
-            ps.setString(2, nombre);
-            ps.setString(3, correo);
-            ps.setString(4, contrasena);
-            ps.setInt(5, edad);
-            ps.setString(6, apellido);
-            ps.setInt(7, 2);
+            //ps.setInt(1, idusuario);
+            ps.setString(1, nombre);
+            ps.setString(2, correo);
+            ps.setString(3, contrasena);
+            ps.setInt(4, edad);
+            ps.setString(5, apellido);
+            ps.setInt(6, 2);
 
             ps.executeUpdate();
 
@@ -127,7 +127,7 @@ public class ServicioUsuario extends Servicio {
             cerrarStatement(ps);
             desconectar();
 
-            usuarioTO = new UsuarioTO(idusuario, nombre, correo, contrasena, edad, apellido, tipo);
+            usuarioTO = new UsuarioTO( id,nombre, correo, contrasena, edad, apellido, tipo);
 
         } catch (Exception e) {
             e.printStackTrace();

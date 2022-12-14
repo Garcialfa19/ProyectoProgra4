@@ -32,6 +32,15 @@ public class UsuarioTO implements Serializable {
         this.apellido = apellido;
         this.tipo = tipo;
     }
+     public UsuarioTO( String nombre, String correo, String contrasena, int edad, String apellido, int tipo) {
+        
+        this.nombre = nombre;
+        this.correo = correo;
+        this.contrasena = contrasena;
+        this.edad = edad;
+        this.apellido = apellido;
+        this.tipo = tipo;
+    }
 
     public int getEdad() {
         return edad;

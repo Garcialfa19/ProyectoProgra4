@@ -22,12 +22,17 @@ public class FileUploadView {
     private UploadedFile file;
     private UploadedFiles files;
     private String dropZoneText = "Drop zone p:inputTextarea demo.";
+    private byte[] ImagenArray;
 
-    public void upload() {
-        if (file != null) {
-            FacesMessage message = new FacesMessage("Successful", file.getFileName() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, message);
-        }
+    public FileUploadView(byte[] imagenArray) {
+        ImagenArray = imagenArray;
+    }
+
+    public void upload(FileUploadEvent event) {
+        FacesMessage msg = new FacesMessage("Imagen ", event.getFile().getFileName() + " se esta subiendo");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        this.setImagenArray(event.getFile().getContent());
+        this.setFile(event.getFile());
     }
 
     public void uploadMultiple() {
@@ -81,4 +86,11 @@ public class FileUploadView {
         this.dropZoneText = dropZoneText;
     }
 
+    public byte[] getImagenArray() {
+        return ImagenArray;
+    }
+
+    public void setImagenArray(byte[] imagenArray) {
+        ImagenArray = imagenArray;
+    }
 }

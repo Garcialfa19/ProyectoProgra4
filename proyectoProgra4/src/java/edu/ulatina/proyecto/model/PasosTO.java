@@ -13,7 +13,7 @@ public class PasosTO implements Serializable {
     public PasosTO() {
     }
 
-    public PasosTO(String paso, int idPA) {
+    public PasosTO( int idPA, String paso) {
         this.paso = paso;
         this.idPA = idPA;
     }

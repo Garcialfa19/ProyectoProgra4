@@ -1,6 +1,7 @@
 package edu.ulatina.proyecto.controller;
 
 import edu.ulatina.proyecto.model.IngreTO;
+import edu.ulatina.proyecto.model.PasosTO;
 import edu.ulatina.proyecto.model.RecetaTO;
 import edu.ulatina.proyecto.model.UsuarioTO;
 import edu.ulatina.proyecto.service.ServicioUsuario;
@@ -22,6 +23,7 @@ public class CrudView implements Serializable {
     private UsuarioTO usuarioSeleccionado = new UsuarioTO();
     private RecetaTO recetaSeleccionada=new RecetaTO();
     private IngreTO ingreSeleccionado=new IngreTO();
+    private PasosTO pasoSeleccionado=new PasosTO();
     private UsuarioTO usuarioTO = new UsuarioTO();
     private List<UsuarioTO> listaUsuarios = new ArrayList<UsuarioTO>();
 
@@ -36,6 +38,10 @@ public class CrudView implements Serializable {
     }
     public void openNewIngre() {
         this.ingreSeleccionado = new IngreTO();
+    }
+    
+    public void openNewPaso() {
+        this.pasoSeleccionado = new PasosTO();
     }
 
     @PostConstruct
@@ -82,4 +88,28 @@ public class CrudView implements Serializable {
         this.ingreSeleccionado = ingreSeleccionado;
     }
 
+    public PasosTO getPasoSeleccionado() {
+        return pasoSeleccionado;
+    }
+
+    public void setPasoSeleccionado(PasosTO pasoSeleccionado) {
+        this.pasoSeleccionado = pasoSeleccionado;
+    }
+
+    public UsuarioTO getUsuarioTO() {
+        return usuarioTO;
+    }
+
+    public void setUsuarioTO(UsuarioTO usuarioTO) {
+        this.usuarioTO = usuarioTO;
+    }
+
+    public List<UsuarioTO> getListaUsuarios() {
+        return listaUsuarios;
+    }
+
+    public void setListaUsuarios(List<UsuarioTO> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
+    
 }
