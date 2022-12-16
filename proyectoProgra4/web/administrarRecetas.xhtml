@@ -16,7 +16,7 @@
     </style>
 </h:head>
 <h:body>
-<!--    <h1>Recetas de #{loginController.usuarioTO.nombre} #{loginController.usuarioTO.apellido} </h1>-->
+    <!--    <h1>Recetas de #{loginController.usuarioTO.nombre} #{loginController.usuarioTO.apellido} </h1>-->
 
     <h:form id="form">
         <p:tabMenu activeIndex="#{param.i}">
@@ -118,7 +118,7 @@
                   responsive="true" width="770px" height="430px">
             <p:outputPanel id="manage-product-content" class="ui-fluid">
 
-  
+
                 <div class="field">
                     <p:outputLabel for="name">Nombre</p:outputLabel>
                     <p:inputText id="name" value="#{recetaController.nombreR}" required="true"
@@ -136,8 +136,7 @@
                                  requiredMessage="Categoria Requerida" autocomplete="off"/>
                 </div>
 
-
-
+                <!--  Agregar recetas -->
                 <div class="card">
                     <p:outputLabel for="categoria">Imagen</p:outputLabel>
                     <h:form enctype="multipart/form-data">
@@ -148,23 +147,23 @@
                         <p:growl id="messages" showDetail="true"/>
                     </h:form>
                 </div>
-
-
-
                 <div class="field">
                     <p:commandButton value="Ingredientes" icon="pi pi-plus" actionListener="#{crudView.openNew}"
                                      update=":dialogs:manage-product-content"
                                      oncomplete="PF('manageI').show()"
-                                     styleClass="ui-button-success" 
+                                     styleClass="ui-button-success"
                                      style="width: fit-content; background-color: #cc7b73;border-color: #cc7b73">
                         <p:resetInput target=":dialogs:manage-product-content"/>
                     </p:commandButton>
                 </div>
-                
                 <div class="field">
-                    <p:outputLabel for="dificultad">Dificultad</p:outputLabel>
-                    <p:inputText id="dificultad" value="#{recetaController.dificultad}" required="true"
-                                 requiredMessage="dificultad Requerida" autocomplete="off"/>
+                    <p:outputLabel for="dificultad" value="Dificultad"/>
+                    <p:selectOneMenu id="dificultad" value="#{recetaController.dificultad}" dir="rtl">
+                        <f:selectItem itemLabel="Seleccione la dificultad de la receta " itemValue=""/>
+                        <f:selectItem itemLabel="Facil" itemValue="Facil"/>
+                        <f:selectItem itemLabel="Medio" itemValue="Medio"/>
+                        <f:selectItem itemLabel="Dificil" itemValue="Dificil"/>
+                    </p:selectOneMenu>
                 </div>
 
                 <div class="field">
@@ -173,12 +172,12 @@
                                  requiredMessage="Puntuacion Requerida" autocomplete="off"/>
                 </div>
                 <div class="field">
-                    <p:commandButton value="Pasos" icon="pi pi-plus" 
+                    <p:commandButton value="Pasos" icon="pi pi-plus"
                                      actionListener="#{crudView.openNewPaso()}"
-                                 update=":paso:manejarPaso" oncomplete="PF('manage').show()"
-                                 style="width: fit-content; background-color: #cc7b73;
-                                 border-color: #cc7b73; margin-left: 1px; margin-top: -4px; border-radius: 4px">
-                    <p:resetInput target=":paso:manejarPaso manage"/>
+                                     update=":paso:manejarPaso" oncomplete="PF('manage').show()"
+                                     style="width: fit-content; background-color: #cc7b73;
+                                         border-color: #cc7b73; margin-left: 1px; margin-top: -4px; border-radius: 4px">
+                        <p:resetInput target=":paso:manejarPaso manage"/>
                     </p:commandButton>
                 </div>
 
@@ -203,7 +202,7 @@
                                  class="ui-button-secondary" type="button" style="width: fit-content">
                 </p:commandButton>
 
-                
+
             </f:facet>
 
         </p:dialog>
@@ -256,7 +255,7 @@
                     <p:commandButton value="Ingredientes" icon="pi pi-plus" actionListener="#{crudView.openNew}"
                                      update=":dialogs:manage-product-content"
                                      oncomplete="PF('manageEI').show()"
-                                     styleClass="ui-button-success" 
+                                     styleClass="ui-button-success"
                                      style="width: fit-content; background-color: #cc7b73;border-color: #cc7b73">
                         <p:resetInput target=":dialogs:manage-product-content"/>
                     </p:commandButton>
@@ -277,7 +276,7 @@
                     <p:commandButton value="Pasos" icon="pi pi-plus" actionListener="#{crudView.openNew}"
                                      update=":dialogs:manage-product-content"
                                      oncomplete="PF('manageRecepieDialog').show()"
-                                     styleClass="ui-button-success" 
+                                     styleClass="ui-button-success"
                                      style="width: fit-content; background-color: #cc7b73;border-color: #cc7b73">
                         <p:resetInput target=":dialogs:manage-product-content"/>
                     </p:commandButton>
@@ -311,7 +310,7 @@
         </p:dialog>
 
     </h:form>
-    
+
     <!-- editar ingrediente -->
     <h:form id="ediIng">
 
@@ -320,59 +319,48 @@
         <p:dialog header="Editar ingredientes" showEffect="fade" modal="true" widgetVar="manageEI"
                   responsive="true">
             <p:outputPanel id="editarIng" class="ui-fluid">
-                        <!--  Lista de recetas  -->
-        <div id="ingredientes">
-            <p:dataTable id="dt-recetas" value="#{servicioReceta.listaRecetas(loginController.usuarioTO.idusuario)}"
-                         var="receta"
-                         rows="5"
-                         paginator="true" paginatorPosition="bottom"
-                         paginatorTemplate="{currentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-                         rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+                <!--  Lista de recetas  -->
+                <div id="ingredientes">
+                    <p:dataTable id="dt-recetas" value="#{servicioReceta.listaRecetas(loginController.usuarioTO.idusuario)}"
+                                 var="receta"
+                                 rows="5"
+                                 paginator="true" paginatorPosition="bottom"
+                                 paginatorTemplate="{currentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                 rowsPerPageTemplate="5,10,{ShowAll|'All'}">
 
-                <f:facet name="Header">
-                    Lista de ingredientes
-                </f:facet>
+                        <f:facet name="Header">
+                            Lista de ingredientes
+                        </f:facet>
 
-                <p:column headerText="Nombre" style="text-align: center">
-                    <h:outputText value="#{receta.ingredientes}"/>
-                </p:column>
+                        <p:column headerText="Nombre" style="text-align: center">
+                            <h:outputText value="#{receta.ingredientes}"/>
+                        </p:column>
 
-                <p:column>
-                    <p:commandButton icon="pi pi-pencil" update=":editar:manage-User-Content"
-                                     oncomplete="PF('manageUserDialog').show()"
-                                     styleClass="edit-button rounded-button ui-button-success" process="@this"
-                                     style="background-color: #cc7b73;border-color: #cc7b73">
-                        <f:setPropertyActionListener value="#{receta}" target="#{recetaController.recetaSeleccionada}"/>
-                        <p:resetInput target=":editar:manage-User-Content"/>
-                    </p:commandButton>
-                    <p:commandButton icon="pi pi-trash" class="ui-button-warning rounded-button" update="dt-recetas"
-                                     actionListener="#{recetaController.ocultarReceta(receta.id)}"
-                    >
-                        <f:setPropertyActionListener value="#{receta}" target="#{recetaController.recetaSeleccionada}"/>
-                    </p:commandButton>
-                </p:column>
+                        <p:column>
+                            <p:commandButton icon="pi pi-pencil" update=":editar:manage-User-Content"
+                                             oncomplete="PF('manageUserDialog').show()"
+                                             styleClass="edit-button rounded-button ui-button-success" process="@this"
+                                             style="background-color: #cc7b73;border-color: #cc7b73">
+                                <f:setPropertyActionListener value="#{receta}" target="#{recetaController.recetaSeleccionada}"/>
+                                <p:resetInput target=":editar:manage-User-Content"/>
+                            </p:commandButton>
+                            <p:commandButton icon="pi pi-trash" class="ui-button-warning rounded-button" update="dt-recetas"
+                                             actionListener="#{recetaController.ocultarReceta(receta.id)}"
+                            >
+                                <f:setPropertyActionListener value="#{receta}" target="#{recetaController.recetaSeleccionada}"/>
+                            </p:commandButton>
+                        </p:column>
 
-            </p:dataTable>
-        </div>
+                    </p:dataTable>
+                </div>
             </p:outputPanel>
 
-         
+
 
         </p:dialog>
 
     </h:form>
-
-
-    <!-- Lista de ingredientes
-    <h:form>
-        <div class="card">
-            <h5 style="margin-top: 0">Lista de ingredientes</h5>
-            <p:pickList id="instantPickList" value="#{servicioING.listaIng()}" var="ingre" itemLabel="#{nombre}" itemValue="#{nombre}" transferOnCheckboxClick="true"
-                        showCheckbox="true" showSourceControls="false" showTargetControls="false" />
-        </div>
-    </h:form>
-    -->
 
 
     <!-- registrar ingrediente -->
@@ -384,10 +372,10 @@
                   responsive="true">
             <p:outputPanel id="manejarIngre" class="ui-fluid">
 
-                
+
 
                 <!-- formulario nuevos ingredientes -->
-                
+
                 <div class="Nombre">
                     <p:outputLabel for="name">Nombre</p:outputLabel>
                     <p:inputText id="name" value="#{ingreController.nombre}" required="true"
@@ -429,9 +417,32 @@
         </p:dialog>
 
     </h:form>
-    
-    <!-- registrar ingrediente -->
+
+    <!-- registrar paso -->
     <h:form id="paso">
+        <!-- tabla de pasos editable-->
+        <div class="card">
+            <h5>Lista de pasos (Doble click para editar)</h5>
+            <p:dataTable id="products3" var="pasos" value="#{servicioReceta.listaPasos}" editable="true" editMode="cell"
+                         widgetVar="cellCars2" editInitEvent="dblclick" style="margin-bottom:20px">
+
+                <p:ajax event="cellEdit" listener="#{pasosController.onCellEdit}" update=":paso:messagesModal"/>
+
+                <p:column headerText="Paso">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{pasos.paso}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{pasos.paso}" style="width:100%" label="Name"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+            </p:dataTable>
+        </div>
+
+
 
 
         <p:growl id="messagesModal" showDetail="true"/>
@@ -443,7 +454,7 @@
                     <p:inputText id="paso" value="#{pasosController.paso}" required="true"
                                  requiredMessage="Paso Requerido" autocomplete="off"/>
                 </div>
-                
+
 
             </p:outputPanel>
 
@@ -472,8 +483,8 @@
 
         </p:dialog>
 
+
+
     </h:form>
-    
-    
 </h:body>
 </html>

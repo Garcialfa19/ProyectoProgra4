@@ -81,8 +81,8 @@ public class RecetaController implements Serializable {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(image);
         try {
             BufferedImage savedImage = ImageIO.read(inputStream);
-            ImageIO.write(savedImage,"jpeg", new File("//Mac/Home/Desktop/ProyectoProgra4/proyectoProgra4/web/resources/images/recetas/" + fileName));
-        } catch (IOException e) {
+            ImageIO.write(savedImage,"jpeg", new File("//Mac/Home/Documents/Progra 4/Git/ProyectoProgra4/proyectoProgra4/web/resources/images/recetas/" + fileName));
+    } catch (IOException e) {
             e.printStackTrace();
         }
 

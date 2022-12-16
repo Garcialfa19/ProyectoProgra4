@@ -84,4 +84,28 @@ public class ServicioPasos extends Servicio implements Serializable {
     }
 
 
+
+    public PasosTO actualizarPaso(int idPA,String paso) {
+        PasosTO pasosTO = null;
+        PreparedStatement ps = null;
+
+        try {
+            conectar();
+            String sql = "UPDATE proyectopro4.pasos SET pasos = ? WHERE idPA = ?";
+            ps = conexion.prepareStatement(sql);
+            ps.setInt(1, idPA);
+            ps.setString(2, paso);
+            ps.executeUpdate();
+            pasosTO = new PasosTO(idPA, paso);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            //Paso 5
+            cerrarStatement(ps);
+            desconectar();
+        }
+        return pasosTO;
+
+    }
 }
