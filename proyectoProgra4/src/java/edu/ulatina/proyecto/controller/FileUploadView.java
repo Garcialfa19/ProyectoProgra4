@@ -9,23 +9,23 @@ import org.primefaces.util.EscapeUtils;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 /**
  * @author davidgarcia
  */
 @ManagedBean(name = "fileUploadView")
-@RequestScoped
+@SessionScoped
 public class FileUploadView {
 
     private UploadedFile file;
     private UploadedFiles files;
     private String dropZoneText = "Drop zone p:inputTextarea demo.";
-    private byte[] ImagenArray;
+    private byte[] imagenArray;
 
     public FileUploadView(byte[] imagenArray) {
-        ImagenArray = imagenArray;
+        this.imagenArray = imagenArray;
     }
 
     public void upload(FileUploadEvent event) {
@@ -33,6 +33,9 @@ public class FileUploadView {
         FacesContext.getCurrentInstance().addMessage(null, msg);
         this.setImagenArray(event.getFile().getContent());
         this.setFile(event.getFile());
+    }
+
+    public FileUploadView() {
     }
 
     public void uploadMultiple() {
@@ -87,10 +90,10 @@ public class FileUploadView {
     }
 
     public byte[] getImagenArray() {
-        return ImagenArray;
+        return imagenArray;
     }
 
     public void setImagenArray(byte[] imagenArray) {
-        ImagenArray = imagenArray;
+        this.imagenArray = imagenArray;
     }
 }

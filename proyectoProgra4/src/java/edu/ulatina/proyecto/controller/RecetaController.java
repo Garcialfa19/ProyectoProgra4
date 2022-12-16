@@ -14,8 +14,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
-import java.io.Serializable;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +47,7 @@ public class RecetaController implements Serializable {
     private RecetaTO recetaSeleccionada=new RecetaTO();
     private RecetaTO recetaTO = new RecetaTO();
     private List<RecetaTO> listaRecetas = new ArrayList<RecetaTO>();
+    private FileUploadView fileUploadView;
 
 
     public RecetaController() {
@@ -67,7 +70,22 @@ public class RecetaController implements Serializable {
 
     }
 
-    public void nuevaReceta() {
+    public void nuevaReceta(FileUploadView fileUploadView) {
+
+        System.out.println("este es el nombre del archivo: " + fileUploadView.getFile().getFileName());
+        System.out.println("este es el contenido: " + fileUploadView.getFile().getContent());
+
+        String fileName = fileUploadView.getFile().getFileName();
+        imagen = fileName;
+        byte[] image = fileUploadView.getFile().getContent();
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(image);
+        try {
+            BufferedImage savedImage = ImageIO.read(inputStream);
+            ImageIO.write(savedImage,"jpeg", new File("//Mac/Home/Desktop/ProyectoProgra4/proyectoProgra4/web/resources/images/recetas/" + fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         ServicioReceta servicioReceta = new ServicioReceta();
         this.recetaTO = servicioReceta.agregarReceta(this.id, this.nombreR, this.categoria, this.imagen, this.dificultad, this.descripcion, this.puntuacion, this.getLoginController().getUsuarioTO().getIdusuario());
         FacesContext.getCurrentInstance().addMessage("sticky-key", new FacesMessage(FacesMessage.SEVERITY_INFO, "Receta agregada", "La receta fue agregada exitosamente!"));
@@ -78,6 +96,7 @@ public class RecetaController implements Serializable {
         this.dificultad="";
         this.descripcion="";
         this.puntuacion=0;
+
     }
 
     public RecetaTO agregarRecetaTO() {

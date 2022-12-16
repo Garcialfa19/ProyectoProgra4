@@ -135,6 +135,9 @@
                     <p:inputText id="categoria" value="#{recetaController.categoria}" required="true"
                                  requiredMessage="Categoria Requerida" autocomplete="off"/>
                 </div>
+
+
+
                 <div class="card">
                     <p:outputLabel for="categoria">Imagen</p:outputLabel>
                     <h:form enctype="multipart/form-data">
@@ -145,6 +148,9 @@
                         <p:growl id="messages" showDetail="true"/>
                     </h:form>
                 </div>
+
+
+
                 <div class="field">
                     <p:commandButton value="Ingredientes" icon="pi pi-plus" actionListener="#{crudView.openNew}"
                                      update=":dialogs:manage-product-content"
@@ -185,7 +191,7 @@
             </p:outputPanel>
 
             <f:facet name="footer">
-                <p:commandButton value="Guardar" style="width: fit-content; background-color: #cc7b73; border-color: #cc7b73" icon="pi pi-check" actionListener="#{recetaController.nuevaReceta()}"
+                <p:commandButton value="Guardar" style="width: fit-content; background-color: #cc7b73; border-color: #cc7b73" icon="pi pi-check" actionListener="#{recetaController.nuevaReceta(fileUploadView)}"
                                  update="form:dt-recetas  messagesModal "
                                  process="manage-product-content @this"
                                  oncomplete="PF('manageRecepieDialog').hide()"
