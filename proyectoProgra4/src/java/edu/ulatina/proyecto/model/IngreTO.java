@@ -10,6 +10,7 @@ import java.io.Serializable;
 /**
  *
  * @author usuario
+ * @author davidgarcia
  */
 public class IngreTO implements Serializable {
     private int id;

@@ -17,7 +17,10 @@ import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +51,8 @@ public class RecetaController implements Serializable {
     private RecetaTO recetaTO = new RecetaTO();
     private List<RecetaTO> listaRecetas = new ArrayList<RecetaTO>();
     private FileUploadView fileUploadView;
+    private RecetaTO recetaSeleccionadaIngrediente=new RecetaTO();
+    private RecetaTO recetaSeleccionadaPasos=new RecetaTO();
 
 
     public RecetaController() {
@@ -282,4 +287,24 @@ public class RecetaController implements Serializable {
     public void setEstado(int estado) {
         this.estado = estado;
     }
+
+    public RecetaTO getRecetaSeleccionadaIngrediente() {
+        return recetaSeleccionadaIngrediente;
+    }
+
+    public void setRecetaSeleccionadaIngrediente(RecetaTO recetaSeleccionadaIngrediente) {
+        this.recetaSeleccionadaIngrediente = recetaSeleccionadaIngrediente;
+    }
+
+    public RecetaTO getRecetaSeleccionadaPasos() {
+        return recetaSeleccionadaPasos;
+    }
+
+    public void setRecetaSeleccionadaPasos(RecetaTO recetaSeleccionadaPasos) {
+        this.recetaSeleccionadaPasos = recetaSeleccionadaPasos;
+    }
+    
+    
+    
+    
 }

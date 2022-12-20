@@ -122,7 +122,13 @@ public class ServicioReceta extends Servicio implements Serializable {
                 String descripcion = rs.getString("descripcionREC");
                 int puntuacion = rs.getInt("puntuacionREC");
                 int idUS = rs.getInt("idUS_REC");
+                
+                List<IngreTO> listaRetornoIngredientes = new ArrayList<IngreTO>();
+                ServicioING servicioIngrediente = new ServicioING();
+                listaRetornoIngredientes = servicioIngrediente.listaIngredientes(id);
+                
                 RecetaTO recetaTO = new RecetaTO(id, nombre, categoria, imagen, dificultad, descripcion, puntuacion, idUS);
+                recetaTO.setListaIngredientes(listaRetornoIngredientes);
                 listaRetorno.add(recetaTO);
             }
         } catch (Exception e) {

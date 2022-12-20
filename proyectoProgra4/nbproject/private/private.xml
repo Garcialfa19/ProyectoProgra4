@@ -3,25 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/src/java/edu/ulatina/proyecto/controller/PasosController.java</file>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/web/administrarUsuarios.xhtml</file>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/src/java/edu/ulatina/proyecto/controller/CrudView.java</file>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/web/administrarRecetasAdmin.xhtml</file>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/src/java/edu/ulatina/proyecto/model/PasosTO.java</file>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/src/java/edu/ulatina/proyecto/controller/RecetaController.java</file>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/src/java/edu/ulatina/proyecto/controller/IngreController.java</file>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/src/java/edu/ulatina/proyecto/service/ServicioReceta.java</file>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/web/administrarRecetas.xhtml</file>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/src/java/edu/ulatina/proyecto/controller/LoginController.java</file>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/src/java/edu/ulatina/proyecto/service/ServicioUsuario.java</file>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/web/test.xhtml</file>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/src/java/edu/ulatina/proyecto/service/ServicioPasos.java</file>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/src/java/edu/ulatina/proyecto/service/Servicio.java</file>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/src/java/edu/ulatina/proyecto/model/RecetaTO.java</file>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/web/index.xhtml</file>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/web/bienvenido.xhtml</file>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/src/java/edu/ulatina/proyecto/model/UsuarioTO.java</file>
-            <file>file:/C:/Users/gigabyte/OneDrive%20-%20Universidad%20Latina/Escritorio/Programacion%20VI/ProyectoProgra4/proyectoProgra4/src/java/edu/ulatina/proyecto/service/ServicioING.java</file>
+            <file>file:/Users/davidgarcia/Documents/Progra%204/Git/ProyectoProgra4/proyectoProgra4/src/java/edu/ulatina/proyecto/model/IngreTO.java</file>
+            <file>file:/Users/davidgarcia/Documents/Progra%204/Git/ProyectoProgra4/proyectoProgra4/web/administrarRecetas.xhtml</file>
+            <file>file:/Users/davidgarcia/Documents/Progra%204/Git/ProyectoProgra4/proyectoProgra4/web/index.xhtml</file>
+            <file>file:/Users/davidgarcia/Documents/Progra%204/Git/ProyectoProgra4/proyectoProgra4/src/java/edu/ulatina/proyecto/controller/RecetaController.java</file>
+            <file>file:/Users/davidgarcia/Documents/Progra%204/Git/ProyectoProgra4/proyectoProgra4/src/java/edu/ulatina/proyecto/model/RecetaTO.java</file>
+            <file>file:/Users/davidgarcia/Documents/Progra%204/Git/ProyectoProgra4/proyectoProgra4/src/java/edu/ulatina/proyecto/model/PasosTO.java</file>
         </group>
     </open-files>
 </project-private>

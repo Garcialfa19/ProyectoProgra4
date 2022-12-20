@@ -13,7 +13,8 @@
             background-image: url('resources/images/assets/Background.png');
             background-repeat: repeat;
             background-attachment: fixed;
-            background-size: 100% 100%;}
+            background-size: 100% 100%;
+        }
 
     </style>
 
@@ -32,13 +33,13 @@
 
     <!-- ingresar al sistema -->
     <div id="usuarioform" style=" border-style: none; border-radius: 6px">
-        <h:form style="width: fit-content; margin: auto; margin-top: 40px; border-style: none; border-radius: 6px" >
+        <h:form style="width: fit-content; margin: auto; margin-top: 40px; border-style: none; border-radius: 6px">
 
             <p:growl id="mensaje" showDetail="true" life="700"/>
             <div id="panelgrid" style="width: fit-content">
                 <p:panelGrid columns="1" style="width: 290px; border-radius: 6px; border-style: none">
 
-                    <p:inputText value="#{loginController.correo}" placeholder="Correo electrónico" autocomplete="on"  
+                    <p:inputText value="#{loginController.correo}" placeholder="Correo electrónico" autocomplete="on"
                                  style="width: 100%; border-radius: 6px  "/>
 
                     <p:password value="#{loginController.contrasena}" placeholder="Contraseña" autocomplete="on"
@@ -70,7 +71,7 @@
             <p:outputPanel id="manage-User-Content" class="ui-fluid">
 
                 <!-- formulario -->
-                
+
                 <div class="field">
                     <p:outputLabel for="name">Nombre</p:outputLabel>
                     <p:inputText id="name" value="#{loginController.nombre}" required="true" autocomplete="off"

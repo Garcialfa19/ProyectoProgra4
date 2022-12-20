@@ -2,12 +2,15 @@ package edu.ulatina.proyecto.model;
 
 import edu.ulatina.proyecto.controller.LoginController;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author davidgarcia
  */
 public class RecetaTO implements Serializable {
+
     private int id;
     private String nombre;
     private String ingredientes;
@@ -18,13 +21,13 @@ public class RecetaTO implements Serializable {
     private String dificultad;
     private int puntuacion;
     private int estado;
+    private List<IngreTO> listaIngredientes = new ArrayList<IngreTO>();
+    private List<PasosTO> listaPasos = new ArrayList<PasosTO>();
 
     LoginController lc = new LoginController();
     public int idUS = lc.getIdusuario();
 
-
-
-    public RecetaTO(){
+    public RecetaTO() {
     }
 
     //constructor para TODA la receta
@@ -39,9 +42,8 @@ public class RecetaTO implements Serializable {
         this.dificultad = dificultad;
         this.puntuacion = puntuacion;
     }*/
-
     //constructor para la tabla SQL
-    public RecetaTO(int id, String nombre,String categoria, String imagen, String dificultad, String descripcion, int puntuacion, int idUS) {
+    public RecetaTO(int id, String nombre, String categoria, String imagen, String dificultad, String descripcion, int puntuacion, int idUS) {
         this.id = id;
         this.nombre = nombre;
         this.categoria = categoria;
@@ -52,7 +54,7 @@ public class RecetaTO implements Serializable {
         this.idUS = idUS;
     }
 
-    public RecetaTO(int id, String nombre,String categoria, String imagen, String dificultad, String descripcion, int puntuacion, int idUS, int estado) {
+    public RecetaTO(int id, String nombre, String categoria, String imagen, String dificultad, String descripcion, int puntuacion, int idUS, int estado) {
         this.id = id;
         this.nombre = nombre;
         this.categoria = categoria;
@@ -64,16 +66,10 @@ public class RecetaTO implements Serializable {
         this.estado = estado;
     }
 
-
-
-
-
-
-  /*  @Override
+    /*  @Override
     public RecetaTO clone(){
         return new RecetaTO(getId(), getNombre(), getIngredientes(), getDescripcion(), getPasos(), getCategoria(), getImagen(), getDificultad(), getPuntuacion());
     }*/
-
     public int getId() {
         return id;
     }
@@ -161,4 +157,24 @@ public class RecetaTO implements Serializable {
     public void setEstado(int estado) {
         this.estado = estado;
     }
+
+    public List<IngreTO> getListaIngredientes() {
+        return listaIngredientes;
+    }
+
+    public void setListaIngredientes(List<IngreTO> listaIngredientes) {
+        this.listaIngredientes = listaIngredientes;
+    }
+
+    public List<PasosTO> getListaPasos() {
+        return listaPasos;
+    }
+
+    public void setListaPasos(List<PasosTO> listaPasos) {
+        this.listaPasos = listaPasos;
+    }
+    
+    
+
+    
 }
