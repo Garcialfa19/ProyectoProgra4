@@ -58,6 +58,36 @@ public class ServicioING extends Servicio implements Serializable {
         }
         return ingTO;
     }
+    
+    
+    public IngreTO actualizarIngrediente(int id, String nombre, String cantidad){
+        IngreTO ingTO = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conectar();
+            String sql = "UPDATE proyectopro4.ingredientes SET nombreING = ?, cantidadING = ? WHERE idING = ?;";
+            ps = conexion.prepareStatement(sql);
+            //ps.setInt(1, id);
+            ps.setString(1, nombre);
+            ps.setString(2,cantidad);
+            ps.setInt(3,id);
+
+            ps.executeUpdate();
+            ingTO = new IngreTO(id, nombre, cantidad);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            //Paso 5
+            cerrarResultSet(rs);
+            cerrarStatement(ps);
+            desconectar();
+        }
+        return ingTO;
+    }
+    
 
 
 

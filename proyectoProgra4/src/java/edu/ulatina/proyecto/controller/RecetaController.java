@@ -6,6 +6,8 @@
 package edu.ulatina.proyecto.controller;
 
 import edu.ulatina.proyecto.model.RecetaTO;
+import edu.ulatina.proyecto.service.ServicioING;
+import edu.ulatina.proyecto.service.ServicioPasos;
 import edu.ulatina.proyecto.service.ServicioReceta;
 
 import javax.annotation.PostConstruct;
@@ -42,22 +44,21 @@ public class RecetaController implements Serializable {
     private String dificultad;
     private int puntuacion;
     private int estado;
-    
+
     @ManagedProperty("#{loginController}")
     private LoginController loginController;
-    
+
     private int idUS;
-    private RecetaTO recetaSeleccionada=new RecetaTO();
+    private RecetaTO recetaSeleccionada = new RecetaTO();
     private RecetaTO recetaTO = new RecetaTO();
     private List<RecetaTO> listaRecetas = new ArrayList<RecetaTO>();
     private FileUploadView fileUploadView;
-    private RecetaTO recetaSeleccionadaIngrediente=new RecetaTO();
-    private RecetaTO recetaSeleccionadaPasos=new RecetaTO();
-
+    private RecetaTO recetaSeleccionadaIngrediente = new RecetaTO();
+    private RecetaTO recetaSeleccionadaPasos = new RecetaTO();
 
     public RecetaController() {
     }
-    
+
     @PostConstruct
     public void cargarLista() {
         this.listaRecetas = new ServicioReceta().listaRecetas(this.getLoginController().getUsuarioTO().getIdusuario());
@@ -86,21 +87,21 @@ public class RecetaController implements Serializable {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(image);
         try {
             BufferedImage savedImage = ImageIO.read(inputStream);
-            ImageIO.write(savedImage,"jpeg", new File("//Mac/Home/Documents/Progra 4/Git/ProyectoProgra4/proyectoProgra4/web/resources/images/recetas/" + fileName));
-    } catch (IOException e) {
+            ImageIO.write(savedImage, "jpeg", new File("//Mac/Home/Documents/Progra 4/Git/ProyectoProgra4/proyectoProgra4/web/resources/images/recetas/" + fileName));
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         ServicioReceta servicioReceta = new ServicioReceta();
         this.recetaTO = servicioReceta.agregarReceta(this.id, this.nombreR, this.categoria, this.imagen, this.dificultad, this.descripcion, this.puntuacion, this.getLoginController().getUsuarioTO().getIdusuario());
         FacesContext.getCurrentInstance().addMessage("sticky-key", new FacesMessage(FacesMessage.SEVERITY_INFO, "Receta agregada", "La receta fue agregada exitosamente!"));
-        this.id=0;
-        this.nombreR="";
-        this.categoria="";
-        this.imagen="";
-        this.dificultad="";
-        this.descripcion="";
-        this.puntuacion=0;
+        this.id = 0;
+        this.nombreR = "";
+        this.categoria = "";
+        this.imagen = "";
+        this.dificultad = "";
+        this.descripcion = "";
+        this.puntuacion = 0;
 
     }
 
@@ -109,8 +110,8 @@ public class RecetaController implements Serializable {
         FacesContext.getCurrentInstance().addMessage("sticky-key", new FacesMessage(FacesMessage.SEVERITY_INFO, "Receta actualizada", "La receta fue actualizada exitosamente!"));
         return recetaTO;
     }
-    
-    public void ocultarReceta(int idS){
+
+    public void ocultarReceta(int idS) {
         ServicioReceta servicioReceta = new ServicioReceta();
         servicioReceta.ocultarReceta(idS);
         System.out.println(idS);
@@ -122,8 +123,8 @@ public class RecetaController implements Serializable {
         ServicioReceta servicioReceta = new ServicioReceta();
         servicioReceta.listaRecetas(1);
     }
-    
-    public void editarRecetaTO(){
+
+    public void editarRecetaTO() {
         System.out.println("Identificador: " + this.id);
         System.out.println("Nombre: " + this.nombreR);
         System.out.println("descripcion: " + this.descripcion);
@@ -133,12 +134,14 @@ public class RecetaController implements Serializable {
         System.out.println("puntuacion: " + this.puntuacion);
         System.out.println("puntuacion: " + this.idUS);
         ServicioReceta servicioReceta = new ServicioReceta();
+        ServicioPasos servicioPasos = new ServicioPasos();
+        ServicioING servicioING = new ServicioING();
         this.recetaTO = servicioReceta.actualizarReceta(this.recetaSeleccionada.getId(), this.recetaSeleccionada.getNombre(), this.recetaSeleccionada.getCategoria(), this.recetaSeleccionada.getImagen(), this.recetaSeleccionada.getDificultad(), this.recetaSeleccionada.getDescripcion(), this.recetaSeleccionada.getPuntuacion(), this.getLoginController().getUsuarioTO().getIdusuario());
         this.cargarLista();
         FacesContext.getCurrentInstance().addMessage("sticky-key", new FacesMessage(FacesMessage.SEVERITY_INFO, "Receta actualizada", "La receta fue actualizada exitosamente!"));
     }
 
-    public void editarRecetaAdmin(){
+    public void editarRecetaAdmin() {
         System.out.println("Identificador: " + this.id);
         System.out.println("Nombre: " + this.nombreR);
         System.out.println("descripcion: " + this.descripcion);
@@ -152,7 +155,6 @@ public class RecetaController implements Serializable {
         this.cargarLista();
         FacesContext.getCurrentInstance().addMessage("sticky-key", new FacesMessage(FacesMessage.SEVERITY_INFO, "Receta actualizada", "La receta fue actualizada exitosamente!"));
     }
-    
 
     //maneja el request, la ruta es la pagina donde queremos ir
     public void redireccionar(String ruta) {
@@ -179,10 +181,6 @@ public class RecetaController implements Serializable {
     public void setRecetaSeleccionada(RecetaTO recetaSeleccionada) {
         this.recetaSeleccionada = recetaSeleccionada;
     }
-
-
-
-
 
     public int getId() {
         return id;
@@ -303,8 +301,5 @@ public class RecetaController implements Serializable {
     public void setRecetaSeleccionadaPasos(RecetaTO recetaSeleccionadaPasos) {
         this.recetaSeleccionadaPasos = recetaSeleccionadaPasos;
     }
-    
-    
-    
-    
+
 }

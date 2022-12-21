@@ -13,7 +13,7 @@ public class Servicio {
     private final String puerto = "3306";
     private final String sid = "proyectopro4"; //nombre del esquema
     private final String usuario = "root";
-    private final String clave = "root";//adminadmin, root, Ywfkus15, admin
+    private final String clave = "adminadmin";//adminadmin, root, Ywfkus15, admin
 
     public void conectar() {
         try {

@@ -21,7 +21,7 @@ public class RecetaTO implements Serializable {
     private String dificultad;
     private int puntuacion;
     private int estado;
-    private List<IngreTO> listaIngredientes = new ArrayList<IngreTO>();
+    public List<IngreTO> listaIngredientes = new ArrayList<IngreTO>();
     private List<PasosTO> listaPasos = new ArrayList<PasosTO>();
 
     LoginController lc = new LoginController();

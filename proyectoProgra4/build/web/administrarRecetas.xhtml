@@ -134,12 +134,19 @@
                                      requiredMessage="Descripcion Requerida" autocomplete="off"/>
                     </div>
                     <div class="field">
-                        <p:outputLabel for="categoria">Categoria</p:outputLabel>
-                        <p:inputText id="categoria" value="#{recetaController.categoria}" required="true"
-                                     requiredMessage="Categoria Requerida" autocomplete="off"/>
+                        <p:outputLabel for="categoria" value="categoria"/>
+                        <p:selectOneMenu id="categoria" value="#{recetaController.categoria}" dir="rtl" placeholder="Categoria" label="Categoria">
+                            <f:selectItem itemLabel="Italiana" itemValue="Italiana"/>
+                            <f:selectItem itemLabel="Española" itemValue="Española"/>
+                            <f:selectItem itemLabel="Mexicana" itemValue="Mexicana"/>
+                            <f:selectItem itemLabel="BBQ" itemValue="BBQ"/>
+                            <f:selectItem itemLabel="Saludable" itemValue="Saludable"/>
+                            <f:selectItem itemLabel="Desayuno" itemValue="Desayuno"/>
+                            <f:selectItem itemLabel="Postre" itemValue="Postre"/>
+                        </p:selectOneMenu>
                     </div>
 
-                    <!--  Agregar recetas -->
+                 
                     <div class="card">
                         <p:outputLabel for="categoria">Imagen</p:outputLabel>
                         <h:form enctype="multipart/form-data">
@@ -150,21 +157,15 @@
                             <p:growl id="messages" showDetail="true"/>
                         </h:form>
                     </div>
-                    <div class="field">
-                        <p:commandButton value="Ingredientes" icon="pi pi-plus" actionListener="#{crudView.openNew}"
-                                         update=":dialogs:manage-product-content"
-                                         oncomplete="PF('manageI').show()"
-                                         styleClass="ui-button-success"
-                                         style="width: fit-content; background-color: #cc7b73;border-color: #cc7b73; margin-top: 10px; margin-bottom: 5px">
-                            <p:resetInput target=":dialogs:manage-product-content"/>
-                        </p:commandButton>
-                    </div>
+                    
+                    
                     <div class="field">
                         <p:outputLabel for="dificultad" value="Dificultad"/>
-                        <p:selectOneMenu id="dificultad" value="#{recetaController.dificultad}" dir="rtl" placeholder="Dificultad">
+                        <p:selectOneMenu id="dificultad" value="#{recetaController.dificultad}" dir="rtl" placeholder="Dificultad" label="Dificultad">
                             <f:selectItem itemLabel="Facil" itemValue="Facil"/>
-                            <f:selectItem itemLabel="Medio" itemValue="Medio"/>
+                            <f:selectItem itemLabel="Media" itemValue="Media"/>
                             <f:selectItem itemLabel="Dificil" itemValue="Dificil"/>
+                            <f:selectItem itemLabel="Muy Dificil" itemValue="Muy Dificil"/>
                         </p:selectOneMenu>
                     </div>
 
@@ -173,20 +174,30 @@
                         <p:inputText id="puntuacion" value="#{recetaController.puntuacion}" required="true"
                                      requiredMessage="Puntuacion Requerida" autocomplete="off"/>
                     </div>
-                    <div class="field">
-                        <p:commandButton value="Pasos" icon="pi pi-plus"
-                                         actionListener="#{crudView.openNewPaso()}"
-                                         update=":paso:manejarPaso" oncomplete="PF('manageP').show()"
-                                         style="width: fit-content; background-color: #cc7b73;
-                                         border-color: #cc7b73; margin-bottom: 5px; margin-top: 10px; border-radius: 4px">
-                            <p:resetInput target=":paso:manejarPaso manageP"/>
-                        </p:commandButton>
-                    </div>
+                    
 
                     <div class="field">
                         <p:outputLabel for="usuario">Usuario</p:outputLabel>
                         <p:inputText id="usuario" value="#{loginController.usuarioTO.nombre}" required="true"
                                      requiredMessage="Puntuacion Requerida" autocomplete="off" disabled="true"/>
+                    </div>
+                    
+                    <div class="field">
+                        <p:commandButton value="Ingredientes" icon="pi pi-plus" actionListener="#{crudView.openNew}"
+                                         update=":dialogs:manage-product-content"
+                                         oncomplete="PF('manageI').show()"
+                                         styleClass="ui-button-success"
+                                         style="width: fit-content; background-color: #cc7b73;border-color: #cc7b73; margin-top: 10px; margin-bottom: 5px; margin-right: 5px">
+                            <p:resetInput target=":dialogs:manage-product-content"/>
+                        </p:commandButton>
+                    
+                        <p:commandButton value="Pasos" icon="pi pi-plus"
+                                         actionListener="#{crudView.openNewPaso()}"
+                                         update=":paso:manejarPaso" oncomplete="PF('manageP').show()"
+                                         style="width: fit-content; background-color: #cc7b73;
+                                         border-color: #cc7b73; margin-bottom: 5px; margin-top: 10px; border-radius: 5px">
+                            <p:resetInput target=":paso:manejarPaso manageP"/>
+                        </p:commandButton>
                     </div>
 
                 </p:outputPanel>
@@ -241,17 +252,26 @@
 
 
                     <div class="field">
-                        <p:outputLabel for="categoria">Categoría</p:outputLabel>
-                        <p:inputText id="categoria" value="#{recetaController.recetaSeleccionada.categoria}" required="true"
-                                     autocomplete="off"
-                                     requiredMessage="Categoría Requerida"/>
+                        <p:outputLabel for="categoria" value="Categoria"/>
+                        <p:selectOneMenu id="categoria" value="#{recetaController.recetaSeleccionada.categoria}" dir="rtl" placeholder="Categoria" label="Categoria">
+                            <f:selectItem itemLabel="Italiana" itemValue="Italiana"/>
+                            <f:selectItem itemLabel="Española" itemValue="Española"/>
+                            <f:selectItem itemLabel="Mexicana" itemValue="Mexicana"/>
+                            <f:selectItem itemLabel="BBQ" itemValue="BBQ"/>
+                            <f:selectItem itemLabel="Saludable" itemValue="Saludable"/>
+                            <f:selectItem itemLabel="Desayuno" itemValue="Desayuno"/>
+                            <f:selectItem itemLabel="Postre" itemValue="Postre"/>
+                        </p:selectOneMenu>
                     </div>
 
                     <div class="field">
-                        <p:outputLabel for="dificultad">Dificultad</p:outputLabel>
-                        <p:inputText id="dificultad" value="#{recetaController.recetaSeleccionada.dificultad}"
-                                     required="true" autocomplete="off"
-                                     requiredMessage="Dificultad Requerida"/>
+                        <p:outputLabel for="dificultad" value="Dificultad"/>
+                        <p:selectOneMenu id="dificultad" value="#{recetaController.recetaSeleccionada.dificultad}" dir="rtl" placeholder="Dificultad" label="Dificultad">
+                            <f:selectItem itemLabel="Facil" itemValue="Facil"/>
+                            <f:selectItem itemLabel="Media" itemValue="Media"/>
+                            <f:selectItem itemLabel="Dificil" itemValue="Dificil"/>
+                            <f:selectItem itemLabel="Muy Dificil" itemValue="Muy Dificil"/>
+                        </p:selectOneMenu>
                     </div>
 
                     <div class="field">
