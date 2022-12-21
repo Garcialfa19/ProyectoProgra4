@@ -189,9 +189,9 @@
 
                 <!-- formulario -->
                 <div class="id">
-                    <p:outputLabel for="estado">Estado</p:outputLabel>
-                    <p:inputText id="estado" value="#{recetaController.recetaSeleccionada.estado}" required="true"
-                                 requiredMessage="Identificador Requerido" autocomplete="off" disabled="false"/>
+                    <p:outputLabel for="name">Estado</p:outputLabel>
+                    <p:triStateCheckbox value="#{recetaController.recetaSeleccionada.estado}"/>
+
                 </div>
                 <div class="field">
                     <p:outputLabel for="name">Nombre</p:outputLabel>

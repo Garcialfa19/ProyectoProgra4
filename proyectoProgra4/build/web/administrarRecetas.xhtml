@@ -176,10 +176,10 @@
                     <div class="field">
                         <p:commandButton value="Pasos" icon="pi pi-plus"
                                          actionListener="#{crudView.openNewPaso()}"
-                                         update=":paso:manejarPaso" oncomplete="PF('manage').show()"
+                                         update=":paso:manejarPaso" oncomplete="PF('manageP').show()"
                                          style="width: fit-content; background-color: #cc7b73;
                                          border-color: #cc7b73; margin-bottom: 5px; margin-top: 10px; border-radius: 4px">
-                            <p:resetInput target=":paso:manejarPaso manage"/>
+                            <p:resetInput target=":paso:manejarPaso manageP"/>
                         </p:commandButton>
                     </div>
 
@@ -253,30 +253,30 @@
                                      required="true" autocomplete="off"
                                      requiredMessage="Dificultad Requerida"/>
                     </div>
-                    
+
                     <div class="field">
                         <p:panel header="Ingredientes" style="margin-top:10px">
-                        
-                          <p:repeat var="ingrediente" value="#{recetaController.recetaSeleccionada.listaIngredientes}">
 
-                              <p:inputText style="margin-top:5px" id="name" value="#{ingrediente.nombre}" required="true" />
+                            <p:repeat var="ingrediente" value="#{recetaController.recetaSeleccionada.listaIngredientes}">
 
-                        </p:repeat>
-                            </p:panel>
+                                <p:inputText style="margin-top:5px" id="name" value="#{ingrediente.nombre}" required="true" />
+
+                            </p:repeat>
+                        </p:panel>
                     </div>
-                    
+
                     <div class="field">
                         <p:panel header="Pasos" style="margin-top:10px">
-                        
-                            <p:repeat var="pasos" value="#{recetaController.recetaSeleccionada.listaPasos}">
 
-                              <p:inputText style="margin-top:5px" id="name" value="#{pasos.paso}" required="true" />
+                            <p:repeat var="pasos" value="#{servicioPasos.listaPasos(recetaController.recetaSeleccionada.id)}">
 
-                        </p:repeat>
-                            </p:panel>
+                                <p:inputText style="margin-top:5px" id="name" value="#{pasos.paso}" required="true" />
+
+                            </p:repeat>
+                        </p:panel>
                     </div>
-                    
-                    
+
+
                     <div class="field">
                         <p:outputLabel for="puntuacion">Puntuacion</p:outputLabel>
                         <p:inputText id="puntuacion" value="#{recetaController.recetaSeleccionada.puntuacion}"
@@ -289,7 +289,7 @@
                                      autocomplete="off"
                                      requiredMessage="Imagen Requerida"/>
                     </div>
-                    
+
 
                 </p:outputPanel>
 
@@ -394,7 +394,7 @@
 
 
             <p:growl id="messagesModal" showDetail="true"/>
-            <p:dialog header="Agregar pasos" showEffect="fade" modal="true" widgetVar="manage"
+            <p:dialog header="Agregar pasos" showEffect="fade" modal="true" widgetVar="manageP"
                       responsive="true">
                 <p:outputPanel id="manejarPaso" class="ui-fluid">
                     <div class="Paso">
@@ -405,8 +405,23 @@
 
 
                 </p:outputPanel>
+                <!-- botones -->
+                <f:facet name="footer">
+                    <!-- botón Guardar-->
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     actionListener="#{pasosController.agregarPasosTO()}"
+                                     oncomplete="PF('manageP').hide()"
+                                     style="background-color: #cc7b73;border-color: #cc7b73">
+                        <p:resetInput target="manejarPaso"/>
+                    </p:commandButton>
+                    <!-- botón Cancelar-->
+                    <p:commandButton value="Cancelar" icon="pi pi-times"
+                                     oncomplete="PF('manageP').hide()"
+                                     style="background-color: #cc7b73;border-color: #cc7b73">
+                        <p:resetInput target="manejarPaso"/>
+                    </p:commandButton>
 
-
+                </f:facet>
 
             </p:dialog>
 

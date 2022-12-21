@@ -65,6 +65,7 @@ public class RecetaTO implements Serializable {
         this.idUS = idUS;
         this.estado = estado;
     }
+    
 
     /*  @Override
     public RecetaTO clone(){
@@ -175,6 +176,5 @@ public class RecetaTO implements Serializable {
     }
     
     
-
     
 }
