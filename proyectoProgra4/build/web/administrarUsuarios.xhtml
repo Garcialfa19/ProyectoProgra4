@@ -115,7 +115,7 @@
     </h:form>
 
 
-    <!--  Agregar Usuario  -->
+    <!--  Editar Usuario  -->
     <h:form id="dialogs">
         <p:growl id="messagesModal" showDetail="true" />
         <p:dialog header="Detalle del usuario" showEffect="fade" modal="true" widgetVar="manageUserDialog"
@@ -156,7 +156,9 @@
 
             <f:facet name="footer">
                 <p:commandButton value="Guardar" icon="pi pi-check" actionListener="#{crudView.save}"
-                                 update="manage-product-content messagesModal " process="manage-product-content @this" 
+                                 update="manage-product-content messagesModal " 
+                                 oncomplete="PF('manageUserDialog').hide()"
+                                 process="manage-product-content @this" 
                                  style="background-color: #cc7b73;border-color: #cc7b73"/>
                 <p:commandButton value="Cancelar" icon="pi pi-times" onclick="PF('manageUserDialog').hide()"
                                  class="ui-button-secondary" type="button" />

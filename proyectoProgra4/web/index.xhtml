@@ -33,7 +33,7 @@
 
     <!-- ingresar al sistema -->
     <div id="usuarioform" style=" border-style: none; border-radius: 6px">
-        <h:form style="width: fit-content; margin: auto; margin-top: 40px; border-style: none; border-radius: 6px">
+        <h:form style="width: fit-content; margin: auto; margin-top: 40px; border-style: none; border-radius: 6px;">
 
             <p:growl id="mensaje" showDetail="true" life="700"/>
             <div id="panelgrid" style="width: fit-content">
@@ -66,7 +66,7 @@
 
         <!-- pop-up -->
         <p:growl id="messagesModal" showDetail="true"/>
-        <p:dialog header="Detalles de la receta" showEffect="fade" modal="true" widgetVar="manageUserDialog"
+        <p:dialog header="Detalles del Usuario" showEffect="fade" modal="true" widgetVar="manageUserDialog"
                   responsive="true">
             <p:outputPanel id="manage-User-Content" class="ui-fluid">
 
@@ -94,7 +94,7 @@
                 </div>
                 <div class="field">
                     <p:outputLabel for="clave">Clave</p:outputLabel>
-                    <p:inputText id="clave" value="#{loginController.contrasena}" required="true" autocomplete="off"
+                    <p:password id="clave" value="#{loginController.contrasena}" required="true" autocomplete="off"
                                  requiredMessage="Clave Requerida"/>
                 </div>
 
