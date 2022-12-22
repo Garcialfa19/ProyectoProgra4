@@ -177,12 +177,6 @@
                                      requiredMessage="Puntuacion Requerida" autocomplete="off"/>
                     </div>
                     
-
-                    <div class="field">
-                        <p:outputLabel for="usuario">Usuario</p:outputLabel>
-                        <p:inputText id="usuario" value="#{loginController.usuarioTO.nombre}" required="true"
-                                     requiredMessage="Puntuacion Requerida" autocomplete="off" disabled="true"/>
-                    </div>
                     
                     <div class="field">
                         <p:commandButton value="Ingredientes" icon="pi pi-plus" actionListener="#{crudView.openNew}"
@@ -200,6 +194,12 @@
                                          border-color: #cc7b73; margin-bottom: 5px; margin-top: 10px; border-radius: 5px">
                             <p:resetInput target=":paso:manejarPaso manageP"/>
                         </p:commandButton>
+                    </div>
+                    
+                    <div class="field">
+                        <p:outputLabel for="usuario">Usuario</p:outputLabel>
+                        <p:inputText id="usuario" value="#{loginController.usuarioTO.nombre}" required="true"
+                                     requiredMessage="Puntuacion Requerida" autocomplete="off" disabled="true"/>
                     </div>
 
                 </p:outputPanel>
