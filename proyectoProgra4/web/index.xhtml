@@ -1,132 +1,208 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns="http://www.w3.org/1999/xhtml">
-<h:head>
-    <title>Cooking Bytes</title>
-    <link rel="icon" href="resources/images/assets/icon.png"></link>
-    <style type="text/css">
-        body {
-            background-image: url('resources/images/assets/Background.png');
-            background-repeat: repeat;
-            background-attachment: fixed;
-            background-size: 100% 100%;
-        }
+    <h:head>
+        <title>Cooking Bytes</title>
+        <link rel="icon" href="resources/images/assets/icon.png"></link>
+        <style type="text/css">
+            body {
+                background-color: #bb5045;
+                background-repeat: repeat;
+                background-attachment: fixed;
+                background-size: 100% 100%;
+            }
 
-    </style>
+            @keyframes slideInLeft {
+                0% {
+                    transform: translateX(-100%);
+                }
+                100% {
+                    transform: translateX(0%);
+                }
+            }
+            @keyframes slideInRight {
+                0% {
+                    transform: translateX(100%);
+                }
+                100% {
+                    transform: translateX(0%);
+                }
+            }
+            @keyframes slideInBottom {
+                0% {
+                    transform: translateY(100%);
+                }
+                100% {
+                    transform: translateY(0%);
+                }
+            }
+            .eggs {
+                animation: 1.2s ease-out 0s 1 slideInLeft;
+            }
+            .whisk {
+                animation: 1.4s ease-out 0s 1 slideInLeft;
+            }
+            .spatula {
+                animation: 1.6s ease-out 0s 1 slideInLeft;
+            }
+            .pie {
+                animation: 1.2s ease-out 0s 1 slideInRight;
+            }
+            .rolling {
+                animation: 1.4s ease-out 0s 1 slideInRight;
+            }
+            .timer {
+                animation: 1.6s ease-out 0s 1 slideInRight;
+            }
+            
+           
 
-</h:head>
-<h:body>
-
-    <div id="header"
-         style="width: fit-content; margin: auto">
-        <p style="font-size: 50px; font-weight: bold; text-align: center; color: #cccbcb; margin-top: 101px">
-            Cooking Bytes</p>
-
-        <p style="font-size: 30px; font-weight: normal; text-align: center; color: #cccbcb; margin-top: -35px">
-            Deja salir a tu chef interior</p>
-    </div>
 
 
-    <!-- ingresar al sistema -->
-    <div id="usuarioform" style=" border-style: none; border-radius: 6px">
-        <h:form style="width: fit-content; margin: auto; margin-top: 40px; border-style: none; border-radius: 6px;">
+        </style>
 
-            <p:growl id="mensaje" showDetail="true" life="700"/>
-            <div id="panelgrid" style="width: fit-content">
-                <p:panelGrid columns="1" style="width: 290px; border-radius: 6px; border-style: none">
+    </h:head>
+    <h:body style="overflow: hidden;">
 
-                    <p:inputText value="#{loginController.correo}" placeholder="Correo electrónico" autocomplete="on"
-                                 style="width: 100%; border-radius: 6px  "/>
+        <div id="header"
+             style="width: fit-content; margin: auto">
+            <p style="font-size: 50px; font-weight: bold; text-align: center; color: #cccbcb; margin-top: 101px">
+                Cooking Bytes</p>
 
-                    <p:password value="#{loginController.contrasena}" placeholder="Contraseña" autocomplete="on"
-                                style="width: 100%; border-radius: 6px"/>
+            <p style="font-size: 30px; font-weight: normal; text-align: center; color: #cccbcb; margin-top: -35px">
+                Deja salir a tu chef interior</p>
+        </div>
 
-                    <p:commandButton value="Ingresar al sistema" actionListener="#{loginController.ingresar()}"
-                                     update="mensaje"
-                                     style="width: 100%; background-color: #cc7b73; border-color: #cc7b73; margin-top: -4px; border-radius: 6px"/>
 
-                    <p:commandButton value="Registrar Usuario" actionListener="#{crudView.openNew}"
-                                     update=":dialogs:manage-User-Content" oncomplete="PF('manageUserDialog').show()"
-                                     style="width: 92%; background-color: #cc7b73; border-color: #cc7b73; margin-left: 10px; margin-top: -4px; border-radius: 6px">
-                        <p:resetInput target=":dialogs:manage-User-Content manageUserDialog"/>
+        <!-- ingresar al sistema -->
+        <div class="login" id="usuarioform" style=" border-style: none; border-radius: 6px">
+            <h:form style="width: fit-content; margin: auto; margin-top: 40px; border-style: none; border-radius: 6px;">
+
+                <p:growl id="mensaje" showDetail="true" life="700"/>
+                <div id="panelgrid" style="width: fit-content">
+                    <p:panelGrid columns="1" style="width: 290px; border-radius: 6px; border-style: none">
+
+                        <p:inputText value="#{loginController.correo}" placeholder="Correo electrónico" autocomplete="on"
+                                     style="width: 100%; border-radius: 6px  "/>
+
+                        <p:password value="#{loginController.contrasena}" placeholder="Contraseña" autocomplete="on"
+                                    style="width: 100%; border-radius: 6px"/>
+
+                        <p:commandButton value="Ingresar al sistema" actionListener="#{loginController.ingresar()}"
+                                         update="mensaje"
+                                         style="width: 100%; background-color: #cc7b73; border-color: #cc7b73; margin-top: -4px; border-radius: 6px"/>
+
+                        <p:commandButton value="Registrar Usuario" actionListener="#{crudView.openNew}"
+                                         update=":dialogs:manage-User-Content" oncomplete="PF('manageUserDialog').show()"
+                                         style="width: 92%; background-color: #cc7b73; border-color: #cc7b73; margin-left: 10px; margin-top: -4px; border-radius: 6px">
+                            <p:resetInput target=":dialogs:manage-User-Content manageUserDialog"/>
+                        </p:commandButton>
+
+                    </p:panelGrid>
+                </div>
+            </h:form>
+        </div>
+
+
+        <!-- registrar usuario -->
+        <h:form id="dialogs">
+
+            <!-- pop-up -->
+            <p:growl id="messagesModal" showDetail="true"/>
+            <p:dialog header="Detalles del Usuario" showEffect="fade" modal="true" widgetVar="manageUserDialog"
+                      responsive="true">
+                <p:outputPanel id="manage-User-Content" class="ui-fluid">
+
+                    <!-- formulario -->
+
+                    <div class="field">
+                        <p:outputLabel for="name">Nombre</p:outputLabel>
+                        <p:inputText id="name" value="#{loginController.nombre}" required="true" autocomplete="off"
+                                     requiredMessage="Nombre Requerido"/>
+                    </div>
+                    <div class="field">
+                        <p:outputLabel for="last">Apellido</p:outputLabel>
+                        <p:inputText id="last" value="#{loginController.apellido}" required="true" autocomplete="off"
+                                     requiredMessage="Apellido Requerido"/>
+                    </div>
+                    <div class="field">
+                        <p:outputLabel for="last">Edad</p:outputLabel>
+                        <p:inputText id="edad" value="#{loginController.edad}" required="true" autocomplete="off"
+                                     requiredMessage="Edad Requerida"/>
+                    </div>
+                    <div class="field">
+                        <p:outputLabel for="correo">Correo</p:outputLabel>
+                        <p:inputText id="correo" value="#{loginController.correo}" required="true" autocomplete="off"
+                                     requiredMessage="Correo Requerido"/>
+                    </div>
+                    <div class="field">
+                        <p:outputLabel for="clave">Clave</p:outputLabel>
+                        <p:password id="clave" value="#{loginController.contrasena}" required="true" autocomplete="off"
+                                    requiredMessage="Clave Requerida"/>
+                    </div>
+
+                </p:outputPanel>
+
+                <!-- botones -->
+                <f:facet name="footer">
+                    <!-- botón Guardar-->
+                    <p:commandButton value="Guardar" icon="pi pi-check"
+                                     actionListener="#{loginController.agregarUsuarioTO}"
+                                     update="manage-User-Content messagesModal"
+                                     process="manage-User-Content @this"
+                                     oncomplete="PF('manageUserDialog').hide()"
+                                     style="background-color: #497885; border-color: #497885">
+                        <p:resetInput target="manage-User-Content"/>
+                    </p:commandButton>
+                    <!-- botón Cancelar-->
+                    <p:commandButton value="Cancelar" icon="pi pi-times"
+                                     update="manage-User-Content"
+                                     process="manage-User-Content @this"
+                                     oncomplete="PF('manageUserDialog').hide()"
+                                     style="background-color: #ff6b6b; border-color: #ff6b6b">
+                        <p:resetInput target="manage-User-Content"/>
                     </p:commandButton>
 
-                </p:panelGrid>
-            </div>
+
+                </f:facet>
+
+            </p:dialog>
+
         </h:form>
-    </div>
 
+        <div class="whisk">
+            <p:graphicImage style="width: 140px; position: absolute; left: -30px; bottom: 110px"
+                            library="images" name="assets/whisk.png"/>
+        </div>
 
-    <!-- registrar usuario -->
-    <h:form id="dialogs">
+        <div class="eggs">
+            <p:graphicImage style="width:250px; position: absolute; left: -55px; bottom: -60px"
+                            library="images" name="assets/eggs.png"/>
+        </div>
 
-        <!-- pop-up -->
-        <p:growl id="messagesModal" showDetail="true"/>
-        <p:dialog header="Detalles del Usuario" showEffect="fade" modal="true" widgetVar="manageUserDialog"
-                  responsive="true">
-            <p:outputPanel id="manage-User-Content" class="ui-fluid">
+        <div class="spatula">
+            <p:graphicImage style="width: 140px; position: absolute; left: -40px; bottom: 230px"
+                            library="images" name="assets/spatula.png"/>
+        </div>
 
-                <!-- formulario -->
-
-                <div class="field">
-                    <p:outputLabel for="name">Nombre</p:outputLabel>
-                    <p:inputText id="name" value="#{loginController.nombre}" required="true" autocomplete="off"
-                                 requiredMessage="Nombre Requerido"/>
-                </div>
-                <div class="field">
-                    <p:outputLabel for="last">Apellido</p:outputLabel>
-                    <p:inputText id="last" value="#{loginController.apellido}" required="true" autocomplete="off"
-                                 requiredMessage="Apellido Requerido"/>
-                </div>
-                <div class="field">
-                    <p:outputLabel for="last">Edad</p:outputLabel>
-                    <p:inputText id="edad" value="#{loginController.edad}" required="true" autocomplete="off"
-                                 requiredMessage="Edad Requerida"/>
-                </div>
-                <div class="field">
-                    <p:outputLabel for="correo">Correo</p:outputLabel>
-                    <p:inputText id="correo" value="#{loginController.correo}" required="true" autocomplete="off"
-                                 requiredMessage="Correo Requerido"/>
-                </div>
-                <div class="field">
-                    <p:outputLabel for="clave">Clave</p:outputLabel>
-                    <p:password id="clave" value="#{loginController.contrasena}" required="true" autocomplete="off"
-                                 requiredMessage="Clave Requerida"/>
-                </div>
-
-            </p:outputPanel>
-
-            <!-- botones -->
-            <f:facet name="footer">
-                <!-- botón Guardar-->
-                <p:commandButton value="Guardar" icon="pi pi-check"
-                                 actionListener="#{loginController.agregarUsuarioTO}"
-                                 update="manage-User-Content messagesModal"
-                                 process="manage-User-Content @this"
-                                 oncomplete="PF('manageUserDialog').hide()"
-                                 style="background-color: #497885; border-color: #497885">
-                    <p:resetInput target="manage-User-Content"/>
-                </p:commandButton>
-                <!-- botón Cancelar-->
-                <p:commandButton value="Cancelar" icon="pi pi-times"
-                                 update="manage-User-Content"
-                                 process="manage-User-Content @this"
-                                 oncomplete="PF('manageUserDialog').hide()"
-                                 style="background-color: #ff6b6b; border-color: #ff6b6b">
-                    <p:resetInput target="manage-User-Content"/>
-                </p:commandButton>
-
-
-            </f:facet>
-
-        </p:dialog>
-
-    </h:form>
-
-
-</h:body>
+        <div class="pie">
+            <p:graphicImage style="width: 250px; position: absolute; right: -85px; bottom: -80px"
+                            library="images" name="assets/pie.png"/>
+        </div>
+        
+        <div class="rolling">
+            <p:graphicImage style="width: 200px; position: absolute; right: -65px; bottom: 155px"
+                            library="images" name="assets/rolling.png"/>
+        </div>
+        
+        <div class="timer">
+            <p:graphicImage style="width: 80px; position: absolute; right: 125px; bottom: 145px"
+                            library="images" name="assets/timer.png"/>
+        </div>
+        
+    </h:body>
 </html>
